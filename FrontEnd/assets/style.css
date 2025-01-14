@@ -674,3 +674,27 @@ position: absolute;
     color: #333;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: right;
+    background-color: #ffffff; /* Couleur de fond du pied de page */
+    padding: 10px; /* Espacement interne */
+}
+
+.footer nav ul {
+    list-style-type: none; /* Supprime les puces de la liste */
+    margin: 0;
+    padding: 0;
+    text-align: right; /* Aligne le texte à droite */
+}
+
+.footer nav ul li {
+    display: inline; /* Affiche les éléments de la liste en ligne */
+    margin-right: 20px; /* Espacement entre les éléments */
+}
+
+.mt{
+	margin-left: 88%;
+}
