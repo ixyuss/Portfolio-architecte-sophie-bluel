@@ -108,6 +108,30 @@ function createImageContainer(item) {
 }
 
 
+function deleteImage(id) {
+  // Appel API pour supprimer l'image
+  fetch(`http://localhost:5678/api/works/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`, // Token d'authentification
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        // Supprime toutes les occurrences dans le DOM (galerie principale et modale)
+        document.querySelectorAll(`[data-id="${id}"]`).forEach((container) => {
+          container.remove();
+        });
+        // Rafraîchit la galerie principale
+        displayImages();
+      } else {
+        console.error("Erreur lors de la suppression de l'image :", response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la requête de suppression :", error);
+    });
+}
 
 // Fonction utilitaire pour créer un conteneur d'image
 function createImageContainer(item) {

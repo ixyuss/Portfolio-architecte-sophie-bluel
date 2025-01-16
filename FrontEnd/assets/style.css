@@ -200,6 +200,8 @@ input[type="submit"]{
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    color: #1D6154;
+    font-family: 'Syne';
    
 }
 .category-btn.active {
