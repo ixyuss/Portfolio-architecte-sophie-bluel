@@ -200,13 +200,11 @@ input[type="submit"]{
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+   
 }
-
-/* Effet au survol des boutons */
-.category-btn:hover {
-    background-color: #1D6154;
-    color: white; /* Change la couleur du texte au survol */
+.category-btn.active {
+  background-color: #1D6154;
+  color: white;
 }
 
 .log {
