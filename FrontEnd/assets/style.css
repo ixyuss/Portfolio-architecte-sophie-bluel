@@ -243,11 +243,11 @@ input[type="submit"]{
   form input[type="submit"]:hover {
 	background-color: #0E2F28
   }
-  
+
   a {
 	display: block;
 	text-align: center;
-	margin-top: 15px;
+	
 	color: black;
   }
   
@@ -696,4 +696,11 @@ position: absolute;
 
 .mt{
 	margin-left: 88%;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.95em;
+  margin-top: -15px;
+  margin-left: 24px;
 }
