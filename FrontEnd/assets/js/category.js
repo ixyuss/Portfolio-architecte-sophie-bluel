@@ -21,10 +21,10 @@ async function fetchCategories() {
     }
 }
 
-// Fonction pour afficher les catégories sous forme de boutons
 function displayCategories(categories) {
     const categoryMenu = document.querySelector(".category-menu");
-
+    
+    if (!categoryMenu) { return; }
     // Création d'un bouton "Toutes" pour réinitialiser le filtre
     const allButton = document.createElement("button");
     allButton.classList.add("category-btn", "active"); // Ajout de la classe 'active' par défaut
