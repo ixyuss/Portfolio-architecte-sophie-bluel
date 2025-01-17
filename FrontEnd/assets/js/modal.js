@@ -1,7 +1,8 @@
 const modal = document.getElementById("myModal");
 const closeModal = document.getElementsByClassName("close")[0];
 const modalOverlay = document.querySelector(".modal-overlay");
-
+const addPhotoModal = document.getElementById("addPhotoModal"); // Deuxième modale
+const closeAddPhotoModal = document.getElementsByClassName("close-add-photo")[0];
 // Fonction pour ouvrir la modale et afficher l'overlay
 openModalLink.onclick = function () {
   modal.style.display = "block";
@@ -12,6 +13,11 @@ closeModal.onclick = function () {
   modal.style.display = "none"; // Masque la modale
   modalOverlay.style.display = "none"; // Masque l'overlay
 };
+document.querySelectorAll('.close').forEach(btn => btn.onclick = () => {
+  btn.closest('.modal').style.display = 'none';
+  modalOverlay.style.display = 'none';
+  myModal.style.display = 'none';
+});
 
 // Vérification du token pour masquer les catégories si l'utilisateur est connecté
 document.addEventListener("DOMContentLoaded", function () {
@@ -161,31 +167,39 @@ const uploadPlaceholder = document.querySelector(".upload-placeholder");
 // Prévisualisation de l'image choisie
 projectImageInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
-  if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-          // Supprimer toute prévisualisation précédente
-          const existingPreview = document.getElementById("imagePreview");
-          if (existingPreview) existingPreview.remove();
+  
+  if (file && !["image/jpeg", "image/png", "image/jpg"].includes(file.type)) {
+    alert("Seules les images JPG, et PNG sont autorisées.");
+    projectImageInput.value = ""; // Réinitialiser le champ
+  } else if (file && file.size > 4 * 1024 * 1024) {
+    alert("L'image ne doit pas dépasser 4 Mo.");
+    projectImageInput.value = ""; // Réinitialiser le champ
+  } else if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      // Supprimer toute prévisualisation précédente
+      const existingPreview = document.getElementById("imagePreview");
+      if (existingPreview) existingPreview.remove();
 
-          // Ajouter la nouvelle prévisualisation
-          const preview = document.createElement("img");
-          preview.id = "imagePreview";
-          preview.src = e.target.result;
-          preview.style.width = "100px";
-          preview.style.height = "1600px";
-          preview.style.marginTop = "1px";
-          uploadPlaceholder.appendChild(preview);
+      // Ajouter la nouvelle prévisualisation
+      const preview = document.createElement("img");
+      preview.id = "imagePreview";
+      preview.src = e.target.result;
+      preview.style.width = "100px";
+      preview.style.height = "160px";
+      uploadPlaceholder.appendChild(preview);
 
-          // Masquer la vue "Ajouter une photo" et l'icône
-          document.querySelector(".add-photo-view").style.display = "none";
-          document.querySelector(".choose-image-btn").style.display = "none";
-          // Masquer l'icône de l'image
-          document.querySelector(".fa-image").style.display = "none";
-      };
-      reader.readAsDataURL(file);
+      // Masquer la vue "Ajouter une photo" et l'icône
+      document.querySelector(".add-photo-view").style.display = "none";
+      document.querySelector(".choose-image-btn").style.display = "none";
+      document.querySelector(".fa-image").style.display = "none";
+      document.querySelector(".jpg").style.display = "none";
+
+    };
+    reader.readAsDataURL(file);
   }
 });
+
 document.addEventListener("DOMContentLoaded", function () {
  
   const projectNameInput = document.getElementById("projectName");
@@ -220,7 +234,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addPhotoForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Empêche le rechargement de la page
-
     // Vérifier si tous les champs sont remplis
     const imageFile = projectImageInput.files[0];
     const title = projectNameInput.value.trim();
@@ -230,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Veuillez remplir tous les champs !");
       return;
     }
+    
 
     // Création du FormData
     const formData = new FormData();

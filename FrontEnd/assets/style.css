@@ -443,7 +443,7 @@ input[type="submit"]{
 	background-color: #CBD6DC;
 	color: #306685;
 	border: none;
-	border-radius: 5px;
+	border-radius: 55px;
 	cursor: pointer;
 	margin-top: 10px;
 	font-weight: bold;
@@ -622,7 +622,6 @@ input[type="submit"]{
 /* Bouton désactivé (gris) */
 .btn-gris {
 	background-color: #A7A7A7;
-	cursor: not-allowed;
 	color: white;
   }
   
@@ -711,3 +710,7 @@ position: absolute;
   margin-top: 30%;
   margin-left: 50px;
 }
+.jpg {
+  font-size: 12px;
+  margin-top: 10px;
+  }
