@@ -150,10 +150,25 @@ document.getElementById("addPhotoBtn").addEventListener("click", () => {
   document.getElementById("addPhotoModal").style.display = "block";
 });
 
-// Gérer le clic sur le bouton "Retour"
-document.querySelector(".back").addEventListener("click", function() {
+document.querySelector(".back").addEventListener("click", function () {
   // Fermer la modale d'ajout de photo
   addPhotoModal.style.display = "none";
+
+  // Réinitialiser le formulaire
+  addPhotoForm.reset();
+
+  // Supprimer l'aperçu de l'image
+  const preview = document.getElementById("imagePreview");
+  if (preview) preview.remove();
+
+  // Réafficher la vue "Ajouter une photo" et l'icône
+  document.querySelector(".add-photo-view").style.display = "block";
+  document.querySelector(".choose-image-btn").style.display = "block";
+  document.querySelector(".fa-image").style.display = "inline-block";
+
+  // Réinitialiser la couleur du bouton en gris
+  submitButton.classList.remove("btn-vert");
+  submitButton.classList.add("btn-gris");
 });
 
 document.querySelector(".choose-image-btn").addEventListener("click", () => {
